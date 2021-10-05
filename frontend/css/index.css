@@ -5,6 +5,10 @@
    font-family: Lato, Helvetica, Arial, sans-serif;
 }
 
+button {
+   cursor: pointer;
+}
+
 .container {
    max-width: 1150px;
    margin: 0 auto;
