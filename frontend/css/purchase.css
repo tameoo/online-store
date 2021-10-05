@@ -107,7 +107,7 @@ header {
    cursor: pointer;
 }
 
-.popup li a:hover {
+.popup li button:hover {
    color: #751fff;
 }
 
