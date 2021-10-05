@@ -239,3 +239,6 @@ button.exit-btn {
    align-items: center;
    justify-content: center;
 }
+.clicked-page {
+   display: none;
+}
