@@ -1,0 +1,116 @@
+header {
+   background: #333;
+}
+
+.list {
+   width: 25%;
+}
+
+.item a {
+   color: #fff;
+}
+
+.item::after {
+   background: #fff;
+}
+
+.btn-purchase a {
+   color: #fff;
+   border: 1px solid #fff;
+}
+
+.purchase {
+   padding: 30px;
+}
+
+.purchase h2 {
+   font-size: 40px;
+   color: #333;
+   margin-bottom: 20px;
+}
+
+.purchase-container {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+   grid-template-rows: minmax(300px, 1fr);
+   grid-auto-rows: minmax(300px, 1fr);
+   margin-bottom: 50px;
+   gap: 20px;
+}
+
+.block-purchase {
+   padding: 20px;
+   border-radius: 10px;
+   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.descr {
+   text-align: center;
+   margin-bottom: 6px;
+   color: #333;
+}
+
+.price {
+   color: #c91f1f;
+   display: block;
+   text-align: center;
+   margin-bottom: 8px;
+}
+
+.discount {
+   color: #5711a7;
+   text-decoration: line-through;
+}
+
+.block-purchase img {
+   width: 100%;
+}
+
+.purchase .btn-blue {
+   display: block;
+   margin: 0 auto;
+   padding: 10px 35px 10px 35px;
+   font-size: 13px;
+}
+
+.popup {
+   display: none;
+   width: 200px;
+   position: absolute;
+   top: 50px;
+   left: 0px;
+   background: #333;
+   padding: 20px;
+   border-radius: 10px;
+   color: #fff;
+}
+
+.popupActive {
+   display: block;
+}
+
+.shop {
+   font-size: 16px;
+   background: transparent;
+   color: #fff;
+   border: none;
+   outline: none;
+   cursor: pointer;
+}
+
+.popup ul {
+   list-style-type: none;
+}
+
+.popup li {
+   margin-bottom: 8px;
+   cursor: pointer;
+}
+
+.popup li a:hover {
+   color: #751fff;
+}
+
+.logo {
+   color: #fff;
+}
