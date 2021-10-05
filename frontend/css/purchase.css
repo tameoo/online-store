@@ -114,3 +114,7 @@ header {
 .logo {
    color: #fff;
 }
+
+.clicked-page {
+   display: none;
+}
