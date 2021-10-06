@@ -42,6 +42,19 @@ app.get('/reviews', async (req, res) => {
    }
 });
 
+app.post('/contacts', async (req, res) => {
+   const { fullName, email, message } = req.body;
+   try {
+      const result = await db.query(
+         'INSERT INTO messages (full_name, message, email) VALUES ($1, $2, $3) RETURNING *;',
+         [fullName, message, email]
+      );
+      res.status(200).json(result.rows[0]);
+   } catch (e) {
+      console.log('Error ocurred: ', e);
+   }
+});
+
 app.listen(PORT, () => {
    console.log('Server is running on port: ', PORT);
 });

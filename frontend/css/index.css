@@ -39,7 +39,7 @@ button {
 }
 
 .list {
-   width: 15%;
+   width: 25%;
    list-style-type: none;
    display: flex;
    justify-content: space-between;
