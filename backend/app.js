@@ -12,9 +12,21 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/products', async (req, res) => {
+   const name = req.query.name;
+
    try {
-      const result = await db.query('SELECT * FROM products;');
-      res.status(200).json(result.rows);
+      let result;
+
+      if (name) {
+         result = await db.query('SELECT * FROM products WHERE name = $1;', [
+            name,
+         ]);
+
+         res.status(200).json(result.rows[0]);
+      } else {
+         result = await db.query('SELECT * FROM products;');
+         res.status(200).json(result.rows);
+      }
    } catch (e) {
       console.log('Error ocurred: ', e);
    }

@@ -1,3 +1,17 @@
+document.addEventListener('DOMContentLoaded', (event) => {
+   const productsContainer = document.querySelector('.purchase-container');
+
+   fetchProducts().then((data) => {
+      const cards = data.map(toCard);
+
+      productsContainer.innerHTML = cards.join('');
+
+      document.querySelectorAll('.btn-blue').forEach((btn) => {
+         btn.addEventListener('click', clickHandler);
+      });
+   });
+});
+
 const shopBtn = document.querySelector('.shop');
 const popUp = document.querySelector('.popup');
 
@@ -18,9 +32,9 @@ const types = {
    laptop: 'Ноутбуки',
    phone: 'Телефоны',
    watch: 'Часы',
+   other: 'Другое',
 };
 
-const btns = document.querySelectorAll('.btn-blue');
 const overlay = document.getElementById('overlay');
 const modal = document.querySelector('.modal');
 const closeBtn = document.querySelector('.exit-btn');
@@ -31,16 +45,19 @@ modal.addEventListener('click', (e) => {
    }
 });
 
-btns.forEach((btn) => {
-   btn.addEventListener('click', clickHandler);
-});
-
-async function clickHandler() {
+async function clickHandler(e) {
    overlay.style.display = 'flex';
+   const clickedProductName =
+      e.target.parentNode.querySelector('.descr').innerText;
 
-   const data = await fetchProductData();
-
+   const data = await fetchProductData(clickedProductName);
    modal.innerHTML = await renderProductModal(data);
+
+   document.querySelectorAll('.buy-btn').forEach((btn) =>
+      btn.addEventListener('click', () => {
+         alert('Куплено!');
+      })
+   );
 }
 
 async function renderProductModal({
@@ -102,8 +119,10 @@ async function renderReviews(id) {
    `;
 }
 
-async function fetchProductData() {
-   const res = await fetch('http://localhost:8000/products/1');
+async function fetchProductData(productName) {
+   const res = await fetch(
+      `http://localhost:8000/products?name=${productName}`
+   );
 
    return await res.json();
 }
@@ -112,4 +131,27 @@ async function fetchReviews() {
    const res = await fetch('http://localhost:8000/reviews');
 
    return await res.json();
+}
+
+async function fetchProducts() {
+   const res = await fetch('http://localhost:8000/products');
+
+   return await res.json();
+}
+
+function toCard({ image_src, price, name }) {
+   return `
+      <div class="block-purchase">
+         <img
+            src=${image_src}
+            alt=""
+         />
+         <p class="descr">
+            ${name}
+         </p>
+         <span class="price discount">1200$</span>
+         <span class="price">${price}$</span>
+         <button class="btn-blue">Купить</button>
+      </div>
+   `;
 }
